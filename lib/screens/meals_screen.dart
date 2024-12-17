@@ -10,8 +10,22 @@ class MealsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ,
+      appBar: AppBar(title: Text(title)),
+      body: meals.isEmpty
+          ? const Text('Try adding a meal!')
+          : ListView.builder(
+              itemCount: meals.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  color: (meals[index].isVegan || meals[index].isVegetarian)
+                      ? Colors.green
+                      : Colors.grey,
+                  child: Column(
+                    children: [Text(meals[index].title)],
+                  ),
+                );
+              },
+            ),
     );
   }
 }
